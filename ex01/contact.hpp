@@ -6,11 +6,14 @@
 /*   By: fzayani <fzayani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:52:03 by fzayani           #+#    #+#             */
-/*   Updated: 2025/02/04 18:51:34 by fzayani          ###   ########.fr       */
+/*   Updated: 2025/02/05 15:14:50 by fzayani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+
+#ifndef CONTACT_HPP
+#define CONTACT_HPP
 
 # ifndef MAX_CONTACT
  # define MAX_CONTACT 8
@@ -92,3 +95,5 @@ std::string Contact::get_nikename() const
 {
 	return this->nikename;
 }
+
+# endif
