@@ -6,20 +6,20 @@
 /*   By: fzayani <fzayani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:52:29 by fzayani           #+#    #+#             */
-/*   Updated: 2025/02/05 15:26:14 by fzayani          ###   ########.fr       */
+/*   Updated: 2025/02/12 18:43:09 by fzayani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+# ifndef MAX_CONTACT
+ # define MAX_CONTACT 8
+# endif
 
 #include <iostream>
 #include <iomanip>
 #include <cstdlib>
 #include <limits>
 #include "contact.hpp"
-
-# ifndef MAX_CONTACT
- # define MAX_CONTACT 8
-# endif
-
+#include <cctype>
 class PhoneBook
 {
 private :
@@ -46,6 +46,16 @@ std::string PhoneBook::truncate(std::string str)
 	return (str);
 }
 
+bool isNumber(std::string info)
+{
+	for (size_t i = 0; i < info.length(); i++)
+	{
+		if(!isdigit(info[i]))
+			return false;
+	}
+	return true;
+}
+
 void PhoneBook::ADD()
 {
 	std::string info;
@@ -54,9 +64,10 @@ void PhoneBook::ADD()
 		this->nb_contact = 0;
 
 	std::cout << "Enter your first name: ";
-	std::cin >> info;
-	if(info.empty())
+	if(!(std::cin >> info) || info.empty())
 	{
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout << "Failed cannot be empty\n";
 		return ;
 	}
@@ -73,9 +84,9 @@ void PhoneBook::ADD()
 
 	std::cout << "Enter your number: ";
 	std::cin >> info;
-	if(info.empty())
+	if(info.empty() || !isNumber(info))
 	{
-		std::cout << "Failed cannot be empty\n";
+		std::cout << "Number must contain only digits\n";
 		return ;
 	}
 	tab_contact[nb_contact].set_num(info);

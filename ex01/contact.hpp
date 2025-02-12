@@ -6,7 +6,7 @@
 /*   By: fzayani <fzayani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:52:03 by fzayani           #+#    #+#             */
-/*   Updated: 2025/02/05 15:14:50 by fzayani          ###   ########.fr       */
+/*   Updated: 2025/02/12 18:24:18 by fzayani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 class Contact
 {
 	public:
+		Contact();
 		void set_num(std::string num);
 		std::string get_num() const;
 
@@ -45,6 +46,10 @@ class Contact
 		std::string lastN;
 		std::string nikename;
 };
+
+Contact::Contact()
+{
+}
 
 void Contact::set_num(std::string num)
 {
