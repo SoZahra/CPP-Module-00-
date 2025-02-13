@@ -6,7 +6,7 @@
 /*   By: fzayani <fzayani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:52:29 by fzayani           #+#    #+#             */
-/*   Updated: 2025/02/12 18:43:09 by fzayani          ###   ########.fr       */
+/*   Updated: 2025/02/13 12:10:44 by fzayani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,12 @@ void PhoneBook::ADD()
 {
 	std::string info;
 
-	if(this->nb_contact == 8)
-		this->nb_contact = 0;
+	int index = this->nb_contact;
+
+	if(this->nb_contact >= 8)
+		index = this->nb_contact % 8;
+	else
+		this->nb_contact++;
 
 	std::cout << "Enter your first name: ";
 	if(!(std::cin >> info) || info.empty())
@@ -71,7 +75,7 @@ void PhoneBook::ADD()
 		std::cout << "Failed cannot be empty\n";
 		return ;
 	}
-	tab_contact[nb_contact].set_firstN(info);
+	tab_contact[index].set_firstN(info);
 
 	std::cout << "Enter your last name: ";
 	std::cin >> info;
@@ -114,6 +118,11 @@ void PhoneBook::ADD()
 
 void PhoneBook::SEARCH()
 {
+	if(this->nb_contact == 0)
+	{
+		std::cout << "Phonebook is empty !" << std::endl;
+		return ;
+	}
 	for (int i = 0; i < this->nb_contact; i++)
 	{
 		std::cout 	<< std::setw(10) << i << " | "
