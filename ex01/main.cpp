@@ -6,7 +6,7 @@
 /*   By: fzayani <fzayani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:52:15 by fzayani           #+#    #+#             */
-/*   Updated: 2025/02/12 18:19:32 by fzayani          ###   ########.fr       */
+/*   Updated: 2025/02/15 15:41:09 by fzayani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,18 @@ int main()
 	while(1)
 	{
 		std::cout << "Enter command (ADD/SEARCH/EXIT): ";
-		if(!(std::cin >> command))
+		std::getline(std::cin, command);
+
+		if(!std::cin)
 		{
 			std::cout << "\nExiting program\n";
 			break;
 		}
-
+		if(command.empty() || !isprintable(command))
+		{
+			 std::cout << "Invalid input\n";
+			continue;
+		}
 		if(command == "ADD")
 			repertoire.ADD();
 		else if(command == "SEARCH")
